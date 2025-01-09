@@ -1,6 +1,6 @@
 from flask import Flask, request
 from LUNA import TeleHook, BOT_TOKEN
-import requests
+
 
 app = Flask(__name__)
 
