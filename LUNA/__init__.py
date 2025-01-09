@@ -1,11 +1,16 @@
 
 import os
 from telehook import TeleClient, logger
-from LUNA.config import CONFIG
+from LUNA.config import config
+
+
+CONFIG = config()
+
 
 # Configure the bot token and webhook URL
-BOT_TOKEN = "8186222249:AAEh0MnDoUYzKvo2p1J97JabgHsoIN6v9nE"
+BOT_TOKEN = CONFIG.token
 WEBHOOK_URL = "https://pup-solid-publicly.ngrok-free.app/"
+
 
 # Initialize TeleHook with the plugins folder
 TeleHook = TeleClient(
