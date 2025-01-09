@@ -11,6 +11,8 @@ CONFIG = config()
 BOT_TOKEN = CONFIG.BOT_TOKEN
 WEBHOOK_URL = CONFIG.WEBHOOK_URL
 
+GRAMDB_URI = CONFIG.GRAMDB_URI
+
 
 # Initialize TeleHook with the plugins folder
 TeleHook = TeleClient(
