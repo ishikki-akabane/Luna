@@ -2,4 +2,4 @@
 
 class config():
     def __init__(self):
-        token = "bot"
+        self.token = "bot"
