@@ -9,7 +9,7 @@ CONFIG = config()
 
 # Configure the bot token and webhook URL
 BOT_TOKEN = CONFIG.token
-WEBHOOK_URL = "https://pup-solid-publicly.ngrok-free.app/"
+WEBHOOK_URL = CONFIG.WEBHOOK_URL
 
 
 # Initialize TeleHook with the plugins folder
