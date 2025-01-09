@@ -1,0 +1,5 @@
+
+
+class CONFIG():
+    self.token = ""
+    
