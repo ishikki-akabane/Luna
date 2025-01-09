@@ -8,7 +8,7 @@ CONFIG = config()
 
 
 # Configure the bot token and webhook URL
-BOT_TOKEN = CONFIG.token
+BOT_TOKEN = CONFIG.BOT_TOKEN
 WEBHOOK_URL = CONFIG.WEBHOOK_URL
 
 
@@ -16,7 +16,7 @@ WEBHOOK_URL = CONFIG.WEBHOOK_URL
 TeleHook = TeleClient(
     token=BOT_TOKEN,
     url=WEBHOOK_URL,
-    plugins={"root": "bot.plugins"}
+    plugins={"root": "LUNA.plugins"}
 )
 
 LOGGER = logger
