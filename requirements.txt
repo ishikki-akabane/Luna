@@ -1,5 +1,6 @@
-telehook,
+telehook
 asyncio
 gramdb
 flask
 requests
+motor
