@@ -4,6 +4,7 @@ from LUNA import TeleHook
 from telehook import Filters
 from LUNA.db import db
 
+
 @TeleHook.on_message(Filters.command('start'))
 async def start_cmd(client, message):
     user_id = message.from_user.id
@@ -12,5 +13,5 @@ async def start_cmd(client, message):
     if data:
         pass
     else:
-        await db.add_user(user_id, name, 100, False)
+        await db.add_user(user_id, name)
     message.reply_text(f'Hello {name}')
