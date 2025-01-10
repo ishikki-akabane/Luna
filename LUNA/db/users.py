@@ -1,15 +1,15 @@
 
+from datetime import datetime
+from LUNA import LOGGER
+
 
 class UserOperations:
     """
     A class that handles user-related operations.
     """
     async def check_user(self, user_id: int):
-        data = await self.db.find_one(
-            "users",
-            {
-                "_id": user_id
-            }
+        data = await self.udb.find_one(
+            {"_id": user_id}
         )
         if data:
             return data
@@ -20,8 +20,7 @@ class UserOperations:
         self,
         user_id: int,
         name: str,
-        coins: str,
-        is_scanned: bool
+        username: str=None
     ):
         data = await self.check_user(user_id)
         if data:
@@ -30,14 +29,12 @@ class UserOperations:
             current_time = datetime.now()
             str_date = current_time.strftime("%d %B, %Y")
             try:
-                await self.db.insert_one(
-                    "users",
+                await self.udb.insert_one(
                     {
                         "_id": user_id,
                         "name": name,
-                        "coins": coins,
-                        "joined_date": str_date,
-                        "is_scanned": is_scanned
+                        "username": username,
+                        "date": str_date,
                     }
                 )
             except Exception as e:
