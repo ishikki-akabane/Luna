@@ -1,0 +1,14 @@
+{
+    "users": {
+        "_id": 123456789,
+        "name": "ishikki akabane",
+        "username": "ishikki_akabane",
+        "date": "28.2.25"
+    },
+    "group": {
+        "_id": -1000987654321,
+        "name": "devslab",
+        "username": "devslab",
+        "date": "28.2.25"
+    }
+}
