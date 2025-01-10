@@ -14,4 +14,4 @@ async def start_cmd(client, message):
         pass
     else:
         await db.add_user(user_id, name)
-    message.reply_text(f'Hello {name}')
+    await message.reply_text(f'Hello {name}')
