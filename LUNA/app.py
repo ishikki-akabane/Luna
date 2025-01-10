@@ -4,11 +4,11 @@ from LUNA import TeleHook, BOT_TOKEN
 
 app = Flask(__name__)
 
-@app.route("/haha")
+@app.route("/")
 def home_endpoint():
     return "Telegram Bot is running."
 
-@app.route('/', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 async def webhook_endpoint():
     try:
         update = request.get_json()
