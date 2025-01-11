@@ -12,13 +12,15 @@ class DATABASE(
 ):
     def __init__(self, uri):
         self.client = MongoClient(uri)
-        self.udb = self.client["luna"]["users"]
-        self.gdb = self.client["luna"]["group"]
+        self.centraldb = self.client["luna"]
 
-        LOGGER.info("Database Connected...")
+
         self.initialize()
+        LOGGER.info("Database Connected...")
 
     def initialize(self):
+        self.udb = self.centraldb["users"]
+        self.gdb = self.centraldb["group"]
         return
 
 
