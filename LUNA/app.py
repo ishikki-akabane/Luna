@@ -7,27 +7,20 @@ app = FastAPI()
 
 #################################################################
 
-
-ECHO.setup_plugins(BOT_ID)
-
-
-async def setup_plugins():
-    response = requests.get(f"https://testing.vercel.app/plugins={BOT_ID}")
-    if response.status_code == 200:
-        plugins_list = response["result"]
-        for plugin in plugins_list:
-            await download_plugin(plugin)
-
-def download_plugin(plugin_name, plugin_url):
+def download_plugin(plugin_url):
     response = requests.get(plugin_url)
     if response.status_code == 200:
-        with open(f"LUNA/plugins/{plugin_name}", "wb") as file:
+        plugin_id = plugin_url.split("main/")[1]
+        with open(f"LUNA/plugins/{plugin_id}", "wb") as file:
             file.write(response.content)
         return True
     return False
 
 
-download_plugin("vercel.json", "https://raw.githubusercontent.com/ishikki-akabane/TeleHook/main/vercel.json")
+plugin_list = ECHO.setup_plugins(BOT_ID)
+for plugin_url in plugin_list:
+    download_plugin(plugin_url)
+
 
 
 @app.get("/")
