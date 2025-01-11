@@ -1,11 +1,15 @@
 from fastapi import FastAPI, Request
-from LUNA import TeleHook, BOT_ID
+from LUNA import TeleHook, BOT_ID, ECHO
 import requests
 
 app = FastAPI()
 
 
 #################################################################
+
+
+ECHO.setup_plugins(BOT_ID)
+
 
 async def setup_plugins():
     response = requests.get(f"https://testing.vercel.app/plugins={BOT_ID}")
