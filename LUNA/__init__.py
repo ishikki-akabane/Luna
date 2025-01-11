@@ -1,6 +1,7 @@
 
 import os
 from telehook import TeleClient, logger
+from echocore import EchoClient
 from LUNA.config import config
 
 
@@ -12,7 +13,7 @@ BOT_TOKEN = CONFIG.BOT_TOKEN
 WEBHOOK_URL = CONFIG.WEBHOOK_URL
 
 DATABASE_URI = CONFIG.DATABASE_URI
-
+ECHOCORE_TOKEN = CONFIG.ECHOCORE_TOKEN
 
 
 BOT_ID = CONFIG.BOT_ID
@@ -24,5 +25,7 @@ TeleHook = TeleClient(
     url=WEBHOOK_URL,
     plugins={"root": "LUNA.plugins"}
 )
+
+ECHO = EchoClient(ECHOCORE_TOKEN)
 
 LOGGER = logger
