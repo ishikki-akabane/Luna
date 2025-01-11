@@ -6,26 +6,27 @@ app = FastAPI()
 
 
 #################################################################
-
-def download_plugin(plugin_url):
+def download_plugin(plugin_url, plugin_name):
     response = requests.get(plugin_url)
     if response.status_code == 200:
-        plugin_id = plugin_url.split("main/")[1]
-        with open(f"LUNA/plugins/{plugin_id}", "wb") as file:
+        with open(f"LUNA/plugins/{plugin_name}", "wb") as file:
             file.write(response.content)
         return True
     return False
 
 
-plugin_list = ECHO.setup_plugins(BOT_ID)
+plugin_list = ECHO.setup_plugins()
 for plugin_url in plugin_list:
-    download_plugin(plugin_url)
+    plugin_name = plugin_url.split("main/")[1]
+    print(f"Downloading plugin: {plugin_name}")
+    download_plugin(plugin_url, plugin_name)
 
 
 
 @app.get("/")
 async def home_endpoint():
     return {"message": "Telegram Bot is running."}
+
 
 @app.post("/webhook")
 async def webhook_endpoint(request: Request):
@@ -36,6 +37,7 @@ async def webhook_endpoint(request: Request):
         print(e)
         return {"error": str(e)}
     return {"status": "ok"}
+
 
 @app.get("/run")
 async def run_endpoint():
