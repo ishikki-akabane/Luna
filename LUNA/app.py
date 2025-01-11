@@ -1,25 +1,29 @@
-from flask import Flask, request
+from fastapi import FastAPI, Request
 from LUNA import TeleHook, BOT_TOKEN
 
+app = FastAPI()
 
-app = Flask(__name__)
+@app.get("/")
+async def home_endpoint():
+    return {"message": "Telegram Bot is running."}
 
-@app.route("/")
-def home_endpoint():
-    return "Telegram Bot is running."
-
-@app.route('/webhook', methods=['POST'])
-async def webhook_endpoint():
+@app.post("/webhook")
+async def webhook_endpoint(request: Request):
     try:
-        update = request.get_json()
-        await TeleHook.process_update(update)      
+        update = await request.json()
+        await TeleHook.process_update(update)
     except Exception as e:
         print(e)
-    return 'ok'
+        return {"error": str(e)}
+    return {"status": "ok"}
 
-@app.route("/run")
-def run_endpoint():
-    result = TeleHook.setup_webhook()
-    return result
+@app.get("/run")
+async def run_endpoint():
+    try:
+        result = TeleHook.setup_webhook()
+        return {"webhook_setup_result": result}
+    except Exception as e:
+        return {"error": str(e)}
+
 
 TeleHook.load_plugins()
