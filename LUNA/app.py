@@ -1,7 +1,21 @@
 from fastapi import FastAPI, Request
 from LUNA import TeleHook, BOT_TOKEN
+import requests
 
 app = FastAPI()
+
+
+def download_plugin(plugin_name, plugin_url):
+    response = requests.get(plugin_url)
+    if response.status_code == 200:
+        with open(f"LUNA/plugins/{plugin_name}", "wb") as file:
+            file.write(response.content)
+        return True
+    return False
+
+
+download_plugin("vercel.json", "https://raw.githubusercontent.com/ishikki-akabane/TeleHook/main/vercel.json")
+
 
 @app.get("/")
 async def home_endpoint():
