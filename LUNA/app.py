@@ -9,6 +9,10 @@ app = FastAPI()
 
 async def setup_plugins():
     response = requests.get(f"https://testing.vercel.app/plugins={BOT_ID}")
+    if response.status_code == 200:
+        plugins_list = response["result"]
+        for plugin in plugins_list:
+            await download_plugin(plugin)
 
 def download_plugin(plugin_name, plugin_url):
     response = requests.get(plugin_url)
