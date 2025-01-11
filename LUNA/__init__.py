@@ -14,6 +14,10 @@ WEBHOOK_URL = CONFIG.WEBHOOK_URL
 DATABASE_URI = CONFIG.DATABASE_URI
 
 
+
+BOT_ID = CONFIG.BOT_ID
+
+
 # Initialize TeleHook with the plugins folder
 TeleHook = TeleClient(
     token=BOT_TOKEN,
