@@ -4,3 +4,4 @@ gramdb
 flask
 requests
 motor
+echocore
