@@ -5,6 +5,11 @@ import requests
 app = FastAPI()
 
 
+#################################################################
+
+async def setup_plugins():
+    response = requests.get("https://testing.vercel.app")
+
 def download_plugin(plugin_name, plugin_url):
     response = requests.get(plugin_url)
     if response.status_code == 200:
