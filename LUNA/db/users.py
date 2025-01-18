@@ -7,6 +7,15 @@ class UserOperations:
     """
     A class that handles user-related operations.
     """
+    async def fetch_all(self):
+        data = await self.udb.find({})
+        alldata = []
+        for i in data:
+            alldata.append(i)
+
+        return alldata
+
+
     async def check_user(self, user_id: int):
         data = await self.udb.find_one(
             {"_id": user_id}
